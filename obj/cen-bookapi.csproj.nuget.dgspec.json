@@ -1,28 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/GM/Desktop/cen-bookapi/cen-bookapi.csproj": {}
+    "C:\\Users\\diego\\Desktop\\cen-bookapi\\cen-bookapi.csproj": {}
   },
   "projects": {
-    "/Users/GM/Desktop/cen-bookapi/cen-bookapi.csproj": {
+    "C:\\Users\\diego\\Desktop\\cen-bookapi\\cen-bookapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/GM/Desktop/cen-bookapi/cen-bookapi.csproj",
+        "projectUniqueName": "C:\\Users\\diego\\Desktop\\cen-bookapi\\cen-bookapi.csproj",
         "projectName": "cen-bookapi",
-        "projectPath": "/Users/GM/Desktop/cen-bookapi/cen-bookapi.csproj",
-        "packagesPath": "/Users/GM/.nuget/packages/",
-        "outputPath": "/Users/GM/Desktop/cen-bookapi/obj/",
+        "projectPath": "C:\\Users\\diego\\Desktop\\cen-bookapi\\cen-bookapi.csproj",
+        "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\diego\\Desktop\\cen-bookapi\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/Users/GM/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
