@@ -2,3 +2,4 @@ bin
 obj
 Properties
 CEN4010-Bookstore/appsettings.json
+.vscode
