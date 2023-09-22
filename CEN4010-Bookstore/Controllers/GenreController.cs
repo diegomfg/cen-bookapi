@@ -1,6 +1,7 @@
 ﻿using CEN4010_Bookstore.Data;
 using CEN4010_Bookstore.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace CEN4010_Bookstore.Controllers
 {
@@ -26,6 +27,21 @@ namespace CEN4010_Bookstore.Controllers
             List<Genre> genres = _db.Genres.ToList();
             return genres;
         }
+
+        [HttpPost]
+        public IActionResult Create(Genre obj)
+        {
+            _db.Genres.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+       
 
     }
 }
