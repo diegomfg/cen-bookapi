@@ -3,4 +3,6 @@ obj
 Properties
 CEN4010-Bookstore/appsettings.json
 .vscode
-.vs
+.vs/
+*.bkp
+*.dtmp
