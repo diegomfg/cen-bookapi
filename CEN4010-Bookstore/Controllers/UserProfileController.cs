@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Mvc.Routing;
 namespace CEN4010_Bookstore.Controllers
 {
     [ApiController]
-    public class UserController : Controller
+    public class UserProfileController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public UserController(ApplicationDbContext db)
+        public UserProfileController(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -19,20 +19,16 @@ namespace CEN4010_Bookstore.Controllers
         [Route("/api/[controller]/")]
         public IActionResult Index()
         {
-            /*
-                Creates a user object AND a user profile object simultaneously.
-                Saves associated changes.
-            */
             return View();
         }
 
-        [Route("get-users")]
+        [Route("get-profiles")]
         [HttpGet]
-        public List<User> GetUsers()
+        public List<UserProfile> GetProfiles()
         {
 
-            // Can't find anything for some reason... Migrations?
-            return _db.Users.ToList();
+            
+            return _db.UserProfiles.ToList();
 
         }
 
