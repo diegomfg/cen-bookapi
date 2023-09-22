@@ -29,7 +29,7 @@ namespace CEN4010_Bookstore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Genre obj)
+        public IActionResult Create([FromForm] Genre obj)
         {
             _db.Genres.Add(obj);
             _db.SaveChanges();

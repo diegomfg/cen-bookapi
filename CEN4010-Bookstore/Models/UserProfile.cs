@@ -10,8 +10,8 @@ namespace CEN4010_Bookstore.Models{
 
         [Key]
         public int Id {get; set; }
-        public string? ProfilePicture {get; set; }
-        public string? Address {get; set;}
+        public int UserId {get; set; }
+        public String? ProfilePicture {get; set;}
 
     }
 }

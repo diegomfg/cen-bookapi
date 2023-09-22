@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace CEN4010_Bookstore.Controllers
 {
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserProfileController : Controller
     {
@@ -16,21 +17,19 @@ namespace CEN4010_Bookstore.Controllers
             _db = db;
         }
 
-        [Route("/api/[controller]/")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Route("get-profiles")]
         [HttpGet]
         public List<UserProfile> GetProfiles()
         {
-
-            
-            return _db.UserProfiles.ToList();
+            List<UserProfile> UserProfiles = _db.UserProfiles.ToList();
+            return UserProfiles;
 
         }
 
     }
 }
+
