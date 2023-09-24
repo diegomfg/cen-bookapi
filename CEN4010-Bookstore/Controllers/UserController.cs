@@ -1,13 +1,14 @@
 using System.Security.Cryptography;
 using CEN4010_Bookstore.Data;
 using CEN4010_Bookstore.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CEN4010_Bookstore.Controllers
 {
     [ApiController]
+    [Route("api/[controller]/[action]")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -16,24 +17,26 @@ namespace CEN4010_Bookstore.Controllers
             _db = db;
         }
 
-        [Route("/api/[controller]/")]
         public IActionResult Index()
         {
-            /*
-                Creates a user object AND a user profile object simultaneously.
-                Saves associated changes.
-            */
             return View();
         }
 
-        [Route("get-users")]
+
+        [HttpPost]
+        public User Create([FromBody] User user)
+        {
+            Console.WriteLine(user);
+            _db.Users.Add(user);
+            _db.SaveChanges();
+            return user;
+        }
+
         [HttpGet]
         public List<User> GetUsers()
         {
-
-            // Can't find anything for some reason... Migrations?
-            return _db.Users.ToList();
-
+            List<User> users = _db.Users.Where(s => s.UserName.Contains("diego")).ToList();
+            return users;
         }
 
     }
