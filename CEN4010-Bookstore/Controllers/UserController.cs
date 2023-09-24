@@ -26,17 +26,20 @@ namespace CEN4010_Bookstore.Controllers
         [HttpPost]
         public User Create([FromBody] User user)
         {
-            Console.WriteLine(user);
+            Console.WriteLine(user.ToString());
             _db.Users.Add(user);
             _db.SaveChanges();
             return user;
         }
 
         [HttpGet]
-        public List<User> GetUsers()
+        public List<User>? GetUsers([FromQuery] string username)
         {
-            List<User> users = _db.Users.Where(s => s.UserName.Contains("diego")).ToList();
-            return users;
+            Console.WriteLine($"Received from query: {username}");
+            
+            List<User> users = _db.Users.Where(user => user.UserName.Contains(username)).ToList();
+                return users;
+            
         }
 
     }
