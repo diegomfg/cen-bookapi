@@ -33,13 +33,23 @@ namespace CEN4010_Bookstore.Controllers
         }
 
         [HttpGet]
-        public List<User>? GetUsers([FromQuery] string username)
+        public List<User>? GetByUserName([FromQuery] string username)
         {
             Console.WriteLine($"Received from query: {username}");
-            
+
             List<User> users = _db.Users.Where(user => user.UserName.Contains(username)).ToList();
-                return users;
-            
+            return users;
+
+        }
+
+        // Finds user by Email (Approximately)
+        [HttpGet]
+        public List<User>? GetByEmail([FromQuery] string possibleEmail)
+        {
+            Console.WriteLine(possibleEmail.ToString());
+            List<User> users = _db.Users.Where(user => user.Email.Contains(possibleEmail)).ToList();
+            return users;
+
         }
 
     }
