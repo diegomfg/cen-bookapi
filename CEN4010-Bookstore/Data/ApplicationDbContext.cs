@@ -9,6 +9,14 @@ namespace CEN4010_Bookstore.Data
         {
 
         }
+
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<User>()
+        //     .HasOne(user => user.UserProfile)
+        //     .WithOne(profile => profile.User)
+        //     .HasForeignKey<User>(user => user.UserProfile);
+        // }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BookRating> BookRatings { get; set; }

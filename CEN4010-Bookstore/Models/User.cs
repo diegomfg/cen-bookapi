@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace CEN4010_Bookstore.Models
 {
@@ -15,6 +16,7 @@ namespace CEN4010_Bookstore.Models
         public string Address { get; set; }
         public int PaymentId { get; set; }
         public int UserTypeId { get; set; }
+        public UserProfile? UserProfile { get; set; }
 
     }
 }

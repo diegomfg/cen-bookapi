@@ -52,5 +52,11 @@ namespace CEN4010_Bookstore.Controllers
 
         }
 
+        /**
+        * @todo Create Edit route
+        *       Create Delete route
+        *
+        */
+
     }
 }
