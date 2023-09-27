@@ -7,8 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CEN4010_Bookstore.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]/[action]")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -21,7 +19,6 @@ namespace CEN4010_Bookstore.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         public User Create([FromBody] User user)
@@ -38,6 +35,7 @@ namespace CEN4010_Bookstore.Controllers
             Console.WriteLine($"Received from query: {username}");
 
             List<User> users = _db.Users.Where(user => user.UserName.Contains(username)).ToList();
+
             return users;
 
         }
