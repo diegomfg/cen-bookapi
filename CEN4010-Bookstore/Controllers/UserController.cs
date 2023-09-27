@@ -44,10 +44,8 @@ namespace CEN4010_Bookstore.Controllers
         [HttpGet]
         public List<User>? GetByEmail([FromQuery] string possibleEmail)
         {
-            Console.WriteLine(possibleEmail.ToString());
             List<User> users = _db.Users.Where(user => user.Email.Contains(possibleEmail)).ToList();
             return users;
-
         }
 
         /**
@@ -55,6 +53,21 @@ namespace CEN4010_Bookstore.Controllers
         *       Create Delete route
         *
         */
+
+        [HttpGet]
+        public User? Update(int? id)
+        {
+            // As expected. Doesn't work.
+            var user = _db.Users.Find(id);
+            return user;
+        }
+
+        [HttpDelete]
+        public int Delete(int? id){
+            // Pending
+            var user = _db.Users.Where(user => user.Id.Equals(id)).ExecuteDelete();
+            return user;
+        }
 
     }
 }
