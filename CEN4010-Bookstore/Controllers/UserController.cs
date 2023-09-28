@@ -30,36 +30,24 @@ namespace CEN4010_Bookstore.Controllers
         }
 
         [HttpGet]
-        public List<User>? GetByUserName([FromQuery] string username)
+        public User? GetById(int? id)
         {
-            Console.WriteLine($"Received from query: {username}");
+            if(id == null || id == 0){
+                return null;
+            }
 
-            List<User> users = _db.Users.Where(user => user.UserName.Contains(username)).ToList();
+            User foundInDB = _db.Users.Find(id);
 
-            return users;
+            return foundInDB;
 
         }
 
-        // Finds user by Email (Approximately)
-        [HttpGet]
-        public List<User>? GetByEmail([FromQuery] string possibleEmail)
+        [HttpPut]
+        public OkObjectResult Update([FromBody] User user)
         {
-            List<User> users = _db.Users.Where(user => user.Email.Contains(possibleEmail)).ToList();
-            return users;
-        }
-
-        /**
-        * @todo Create Edit route
-        *       Create Delete route
-        *
-        */
-
-        [HttpGet]
-        public User? Update(int? id)
-        {
-            // As expected. Doesn't work.
-            var user = _db.Users.Find(id);
-            return user;
+                _db.Users.Update(user);
+                _db.SaveChanges();
+                return Ok("Record has been updated");
         }
 
         [HttpDelete]

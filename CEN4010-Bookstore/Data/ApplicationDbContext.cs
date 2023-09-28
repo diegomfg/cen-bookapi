@@ -9,7 +9,6 @@ namespace CEN4010_Bookstore.Data
         {
 
         }
-
         // protected override void OnModelCreating(ModelBuilder modelBuilder)
         // {
         //     modelBuilder.Entity<User>()
