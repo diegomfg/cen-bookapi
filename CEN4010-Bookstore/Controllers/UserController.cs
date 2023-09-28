@@ -30,6 +30,16 @@ namespace CEN4010_Bookstore.Controllers
         }
 
         [HttpGet]
+        public List<User> GetUsers()
+        {
+
+            List<User> users = _db.Users.ToList();
+
+            return users;
+
+        }
+
+        [HttpGet]
         public User? GetById(int? id)
         {
             if(id == null || id == 0){
