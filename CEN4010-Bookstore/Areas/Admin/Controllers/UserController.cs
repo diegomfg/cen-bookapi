@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
