@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace CEN4010_Bookstore.Controllers
+namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CEN4010_Bookstore.Controllers
+namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
@@ -42,7 +42,8 @@ namespace CEN4010_Bookstore.Controllers
         [HttpGet]
         public User? GetById(int? id)
         {
-            if(id == null || id == 0){
+            if (id == null || id == 0)
+            {
                 return null;
             }
 
@@ -55,13 +56,14 @@ namespace CEN4010_Bookstore.Controllers
         [HttpPut]
         public OkObjectResult Update([FromBody] User user)
         {
-                _db.Users.Update(user);
-                _db.SaveChanges();
-                return Ok("Record has been updated");
+            _db.Users.Update(user);
+            _db.SaveChanges();
+            return Ok("Record has been updated");
         }
 
         [HttpDelete]
-        public int Delete(int? id){
+        public int Delete(int? id)
+        {
             // Pending
             var user = _db.Users.Where(user => user.Id.Equals(id)).ExecuteDelete();
             return user;
