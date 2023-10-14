@@ -11,11 +11,11 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
 {
     [Area("Customer")]
 
-    public class ReviewsComments : Controller
+    public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public ReviewsComments(ApplicationDbContext db)
+        public CommentsController(ApplicationDbContext db)
         {
             _db = db;
         }
