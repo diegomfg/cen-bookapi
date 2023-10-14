@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CEN4010_Bookstore.Controllers
+namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Area("Admin")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -22,7 +21,6 @@ namespace CEN4010_Bookstore.Controllers
             return View();
         }
 
-
         [HttpPost]
         public User Create([FromBody] User user)
         {
@@ -33,30 +31,44 @@ namespace CEN4010_Bookstore.Controllers
         }
 
         [HttpGet]
-        public List<User>? GetByUserName([FromQuery] string username)
+        public List<User> GetUsers()
         {
-            Console.WriteLine($"Received from query: {username}");
 
-            List<User> users = _db.Users.Where(user => user.UserName.Contains(username)).ToList();
+            List<User> users = _db.Users.ToList();
+
             return users;
 
         }
 
-        // Finds user by Email (Approximately)
         [HttpGet]
-        public List<User>? GetByEmail([FromQuery] string possibleEmail)
+        public User? GetById(int? id)
         {
-            Console.WriteLine(possibleEmail.ToString());
-            List<User> users = _db.Users.Where(user => user.Email.Contains(possibleEmail)).ToList();
-            return users;
+            if (id == null || id == 0)
+            {
+                return null;
+            }
+
+            User foundInDB = _db.Users.Find(id);
+
+            return foundInDB;
 
         }
 
-        /**
-        * @todo Create Edit route
-        *       Create Delete route
-        *
-        */
+        [HttpPut]
+        public OkObjectResult Update([FromBody] User user)
+        {
+            _db.Users.Update(user);
+            _db.SaveChanges();
+            return Ok("Record has been updated");
+        }
+
+        [HttpDelete]
+        public int Delete(int? id)
+        {
+            // Pending
+            var user = _db.Users.Where(user => user.Id.Equals(id)).ExecuteDelete();
+            return user;
+        }
 
     }
 }
