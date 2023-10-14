@@ -42,8 +42,8 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
             }
             if (obj.Name != null && obj.Name.ToLower() == "test")
             {
-               
- ModelState.AddModelError("", "Test is an invalid value");
+
+                ModelState.AddModelError("", "Test is an invalid value");
             }
             if (ModelState.IsValid)
             {
@@ -110,7 +110,6 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
             _unitOfWork.Save();
             TempData["success"] = "Genre deleted successfully";
             return RedirectToAction("Index");
-
 
         }
 
