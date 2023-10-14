@@ -1,28 +1,28 @@
 ﻿using CEN4010_Bookstore.Data;
+using CEN4010_Bookstore.Models;
 using CEN4010_Bookstore.Repository.IRepository;
+using System.Linq.Expressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CEN4010_Bookstore.Repository
 {
-    public class UnitOfWork : IUnitOfWork
+    public class BookRepository : Repository<Book>, IBookRepository
     {
         private ApplicationDbContext _db;
-        public IGenreRepository Genre {get;private set;}
-        public IBookRepository Book { get; private set; }
-        public UnitOfWork(ApplicationDbContext db)
+        public BookRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
-            Genre = new GenreRepository(_db);
-            Book = new BookRepository(_db);
         }
 
-        public void Save()
+
+        public void Update(Book obj)
         {
-            _db.SaveChanges();
+            _db.Books.Update(obj);
         }
     }
 }

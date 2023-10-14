@@ -34,10 +34,13 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li class = "nav-item">
-                                    <a class="nav-link text-dark" asp-area="admin" asp-controller="Genre" asp-action="Index">Genre</a>
+                                    <a class="nav-link text-dark" asp-area="admin" asp-controller="Genre" asp-action="Index">Genres</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="admin" asp-controller="User" asp-action="Index">Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="admin" asp-controller="Book" asp-action="Index">Books</a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -73,6 +76,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.tiny.cloud/1/h2rj5ml6oy0msqjblrsnm7gv3mpdz7x5ejgtligz5mc0co47/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
