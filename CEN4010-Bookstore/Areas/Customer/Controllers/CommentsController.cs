@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CEN4010_Bookstore.Models;
+using CEN4010_Bookstore.Data;
 
 namespace CEN4010_Bookstore.Areas.Customer.Controllers
 {
@@ -12,36 +13,30 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
 
     public class ReviewsComments : Controller
     {
-        private readonly ILogger<ReviewsComments> _logger;
+        private readonly ApplicationDbContext _db;
 
-        public ReviewsComments(ILogger<ReviewsComments> logger)
+        public ReviewsComments(ApplicationDbContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
 
-        // [HttpPost]
-        // public IActionResult CreateRating(int bookId, int userId, int rating)
-        // {
-        //     // Making sure the rating is between 1 and 5 stars
-        //     if (rating < 1 || rating > 5)
-        //     {
-        //         return BadRequest("Invalid rating. It must be between 1 and 5.");
-        //     }
+        [HttpPost]
+        public IActionResult CreateRating(BookRating bookRating)
+        {
+            // Making sure the rating is between 1 and 5 stars
+            if (bookRating.Rating < 1 || bookRating.Rating > 5)
+            {
+                return BadRequest("Invalid rating. It must be between 1 and 5.");
+            }
 
-        //     // Create a new rating for a book
-        //     var newRating = new BookRating
-        //     {
-        //         BookId = bookId,
-        //         Rating = rating,
-        //         Date = DateTime.Now
-        //     };
 
-        //     _logger.BookRatings.Add(newRating);
-        //     _logger.SaveChanges();
+            var rating = _db.BookRatings.Add(bookRating);
 
-        //     return Ok("Rating created successfully");
-        // }
+            _db.SaveChanges();
+
+            return Ok("Rating created successfully");
+        }
 
 
 
