@@ -3,6 +3,7 @@
     public interface IUnitOfWork
     {
         IGenreRepository Genre { get; }
+        IBookRepository Book { get; }
 
         void Save();
     }

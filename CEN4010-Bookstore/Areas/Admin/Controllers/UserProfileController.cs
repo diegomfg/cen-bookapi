@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
+    [Area("Admin")]
     public class UserProfileController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -27,6 +26,18 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         {
             List<UserProfile> UserProfiles = _db.UserProfiles.ToList();
             return UserProfiles;
+
+        }
+
+        [HttpPost]
+        public String Create([FromBody] UserProfile userProfile)
+        {
+            Console.WriteLine(userProfile);
+            _db.UserProfiles.Add(userProfile);
+            if (_db.SaveChanges() > 0)
+                return "Record created successfully";
+            else
+                return "Unable to create record";
 
         }
 

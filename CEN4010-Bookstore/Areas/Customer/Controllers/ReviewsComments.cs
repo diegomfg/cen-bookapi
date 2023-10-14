@@ -9,7 +9,7 @@ using CEN4010_Bookstore.Models;
 namespace CEN4010_Bookstore.Areas.Customer.Controllers
 {
     [Area("Customer")]
-    
+
     public class ReviewsComments : Controller
     {
         private readonly ILogger<ReviewsComments> _logger;
@@ -19,7 +19,7 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
             _logger = logger;
         }
 
-        
+
         [HttpPost]
         public IActionResult CreateRating(int bookId, int userId, int rating)
         {
@@ -43,10 +43,10 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
             return Ok("Rating created successfully");
         }
 
-        
 
-        
 
-        
+
+
+
     }
 }
