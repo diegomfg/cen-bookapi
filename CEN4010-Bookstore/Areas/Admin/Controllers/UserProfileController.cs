@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
+    [Area("Admin")]
     public class UserProfileController : Controller
     {
         private readonly ApplicationDbContext _db;
