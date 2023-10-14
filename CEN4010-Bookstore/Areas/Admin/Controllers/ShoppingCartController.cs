@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
+    /*[Route("api/[controller]/[action]")]
+    [ApiController]*/
+    [Area ("Admin")]
     public class ShoppingCartController : Controller
     {
         private readonly ApplicationDbContext _db;
