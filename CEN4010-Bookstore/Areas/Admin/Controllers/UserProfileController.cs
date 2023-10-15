@@ -32,8 +32,11 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         [HttpPost]
         public String Create([FromBody] UserProfile userProfile)
         {
-
-            return "Create user profile";
+            var payload = _db.UserProfiles.Add(userProfile);
+            if (_db.SaveChanges() > 0)
+                return "Create user profile";
+            else
+                return "error creating user profile";
 
         }
 
