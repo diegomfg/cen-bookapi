@@ -55,11 +55,12 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         }
 
         [HttpPut]
-        public OkObjectResult Update([FromBody] User user)
+        public User Update([FromBody] User user)
         {
             _db.Users.Update(user);
-            _db.SaveChanges();
-            return Ok("Record has been updated");
+            if (_db.SaveChanges() > 0)
+                return user;
+            return null;
         }
 
         [HttpDelete]
