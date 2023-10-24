@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace CEN4010_Bookstore.Models.ViewModels
 {
-    public class BookVM
+    public class AuthorVM
     {
-        public Book Book { get; set; }
+        public Author Author { get; set; }
         [ValidateNever]
-        public IEnumerable<SelectListItem> GenreList { get; set; }
-        [ValidateNever]
-        public IEnumerable<SelectListItem> AuthorList { get; set; }
+        public IEnumerable<SelectListItem> PublisherList { get; set; }
     }
 }
