@@ -4,6 +4,7 @@ using CEN4010_Bookstore.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore;
 
 namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
@@ -22,10 +23,11 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public List<UserProfile> GetProfiles()
+        public IActionResult GetProfiles()
         {
-            List<UserProfile> UserProfiles = _db.UserProfiles.ToList();
-            return UserProfiles;
+            List<UserProfile> UserProfiles = _db.UserProfiles.Include(u => u.User).ToList();
+            // List<UserProfile> UserProfiles = _db.UserProfiles.ToList();
+            return Json(new {data = UserProfiles});
 
         }
 
