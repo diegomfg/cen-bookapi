@@ -1,0 +1,86 @@
+﻿@model AuthorVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2"> @(Model.Author.Id != 0 ? "Update" : "Create") Author</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Author.Id" hidden />
+
+            <div class="row">
+                <div asp-validation-summary="All"></div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Author.FirstName" class="p-0"></label>
+                    <input asp-for="Author.FirstName" class="form-control" />
+                    <span asp-validation-for="Author.FirstName" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Author.LastName" class="p-0"></label>
+                    <input asp-for="Author.LastName" class="form-control" />
+                    <span asp-validation-for="Author.LastName" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Author.Country" class="p-0"></label>
+                    <input asp-for="Author.Country" class="form-control" />
+                    <span asp-validation-for="Author.Country" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Author.PublisherId" class="p-0"></label>
+                    <Select asp-for="Author.PublisherId" asp-items="@Model.PublisherList" class="form-select  border-0 shadow">
+                        <option disabled selected> --Select Genre--</option>
+                    </Select>
+                    <span asp-validation-for="Author.PublisherId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Author.biography" class="p-0 text-muted"></label>
+                    <textarea asp-for="Author.biography" class="form-control"></textarea>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-6 col-md-3">
+                        @if (Model.Author.Id != 0)
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Update</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Create</button>
+                        }
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Author" asp-action="Index" class="btn btn-outline-primary border  form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+    @section Scripts {
+        <script>
+            tinymce.init({
+                selector: 'textarea',
+                plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                tinycomments_mode: 'embedded',
+                tinycomments_author: 'Author name',
+                mergetags_list: [
+                    { value: 'First.Name', title: 'First Name' },
+                    { value: 'Email', title: 'Email' },
+                ],
+                ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
+            });
+        </script>
+        @{
+            <partial name="_ValidationScriptsPartial" />
+        }
+    }
+

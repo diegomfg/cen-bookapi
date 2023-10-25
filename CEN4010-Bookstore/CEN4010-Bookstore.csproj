@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\book.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,6 +28,10 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\Images\Books\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\book.js" />
   </ItemGroup>
 
 </Project>
