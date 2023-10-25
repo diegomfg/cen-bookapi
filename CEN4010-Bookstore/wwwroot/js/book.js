@@ -17,6 +17,7 @@ function loadDataTable() {
             { data: 'isbn', "width": "10%" },
             { data: 'msrp', "width": "10%" },
             { data: 'yearPublished', "width": "10%" },
+            { data: 'copiesSold', "width": "10%" },
             { data: 'id',
                 "render": function (data) {
                     return `<div class="w-75 btn-group" role="group">

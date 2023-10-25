@@ -3,11 +3,14 @@ using CEN4010_Bookstore.Models;
 using CEN4010_Bookstore.Models.ViewModels;
 using CEN4010_Bookstore.Repository;
 using CEN4010_Bookstore.Repository.IRepository;
+using CEN4010_Bookstore.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Protocol;
 using System.ComponentModel;
 using System.Net;
+using System.Security.Claims;
 
 namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
@@ -122,15 +125,22 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
             return Json(new { data = objBookList });
         }
 
+        public IActionResult GetByAuthor(int AuthId)
+        {
+            List<Book> objBookList = _unitOfWork.Book.GetAll().ToList();
+            objBookList = objBookList.Where(x => x.AuthorId == AuthId).ToList();
+            return Json(new { data = objBookList });
+        }
 
 
-        ///doesnt work. Need to fix this.
+        
         [HttpGet]
         public IActionResult GetISBN(String Id)
         {
-            Book book = _unitOfWork.Book.Get(u => u.ISBN == Id, includeProperties: "Genre,Author");
-            return Json(new { data = book});
+            Book book = _unitOfWork.Book.Get(u => u.ISBN.Contains(Id), includeProperties: "Genre,Author");
+            return Json(new { data = book });
         }
+
 
 
 
