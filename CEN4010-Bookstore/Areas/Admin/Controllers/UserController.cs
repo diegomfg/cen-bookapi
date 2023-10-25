@@ -65,7 +65,6 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         [HttpDelete]
         public int Delete(int? id)
         {
-            // Pending
             var user = _db.Users.Where(user => user.Id.Equals(id)).ExecuteDelete();
             return user;
         }
