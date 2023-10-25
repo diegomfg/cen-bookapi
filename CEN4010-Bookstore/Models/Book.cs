@@ -22,6 +22,7 @@ namespace CEN4010_Bookstore.Models
         public int YearPublished {  get; set; }
         [ValidateNever]
         public string? ImgID { get; set; }
+        public int CopiesSold {  get; set; }
 
 
     }

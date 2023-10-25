@@ -25,11 +25,14 @@
                     </div>
                     <div class="col-12 col-lg-6 offset-lg-1">
 
-                        <div class="col-12 col-md-6 pb-4">
-                            <span class="badge">@Model.Genre.Name</span>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50 ">Category: @Model.Genre.Name</h6>
                         </div>
                         <div class="row ps-2">
-                            <h6 class="text-dark text-opacity-50 ">ISBN : @Model.ISBN</h6>
+                            <h6 class="text-dark text-opacity-50 ">Publisher: @Model.Author.PublisherId</h6>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50 ">ISBN: @Model.ISBN</h6>
                         </div>
                         <div class="row ps-2">
                             <h6 class="text-dark text-opacity-50  pb-2">
@@ -38,6 +41,9 @@
                                     @Model.MSRP.ToString("c")
                                 </span>
                             </h6>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50 ">Copies Sold : @Model.CopiesSold</h6>
                         </div>
                     </div>
                     <div class="row pl-2 my-3">
