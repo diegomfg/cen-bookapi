@@ -37,11 +37,32 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
 
             return Ok("Rating created successfully");
         }
-
-
-
-
-
+        
 
     }
+    public IActionResult CreateComment(int bookId, int userId, string comment)
+    {
+        
+        var newComment = new BookComment
+        {
+            BookId = bookId,
+            UserId = userId,
+            Text = comment,
+            Datestamp = DateTime.Now
+        };
+
+        _dbContext.BookComments.Add(newComment);
+        _dbContext.SaveChanges();
+
+        return Ok("Comment created successfully");
+    }
+    public IActionResult GetComments(int bookId)
+    {
+        var comments = _dbContext.BookComments
+            .Where(c => c.BookId == bookId)
+            .ToList();
+
+        return Ok(comments);
+    }
+
 }
