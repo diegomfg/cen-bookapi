@@ -1,0 +1,33 @@
+﻿@model List<Author>
+<partial name="_Notification" />
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Author List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Author" asp-action="Upsert" class="btn btn-primary">
+                Create New Author
+            </a>
+        </div>
+    </div>
+
+
+    <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name </th>
+                <th>Country </th>
+                <th>Publisher</th>
+                <th>Biography </th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@section Scripts{
+    <script src="~/js/author.js"></script>
+}

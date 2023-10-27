@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.Serialization.DataContracts;
 using System.Text;
 using System.Threading.Tasks;
 using CEN4010_Bookstore.Data;
@@ -43,6 +44,26 @@ namespace CEN4010_Bookstore.Repository
             return query.FirstOrDefault();
         }
 
+
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
+        {
+            IQueryable<T> query = dbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            return query.ToList();
+        }
+
+        /*
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -53,8 +74,11 @@ namespace CEN4010_Bookstore.Repository
                     query = query.Include(includeProp);
                 }
             }
+
+
             return query.ToList();
         }
+        */
 
         public void Remove(T entity)
         {
@@ -65,5 +89,6 @@ namespace CEN4010_Bookstore.Repository
         {
             dbSet.RemoveRange(entity);
         }
+
     }
 }

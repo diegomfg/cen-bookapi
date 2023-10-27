@@ -27,12 +27,14 @@
                     <textarea asp-for="Book.Description" class="form-control"></textarea>
 
                 </div>
-                <div class="mb-3 row p-1">
-                    <label asp-for="Book.AuthorId" class="p-0"></label>
-                    <input asp-for="Book.AuthorId" class="form-control" />
-                    <span asp-validation-for="Book.AuthorId" class="text-danger"></span>
+                    <div class="mb-3 row p-1">
+                        <label asp-for="Book.AuthorId" class="p-0"></label>
+                        <Select asp-for="Book.AuthorId" asp-items="@Model.AuthorList" class="form-select  border-0 shadow">
+                            <option disabled selected> --Select Author--</option>
+                        </Select>
+                        <span asp-validation-for="Book.AuthorId" class="text-danger"></span>
 
-                </div>
+                    </div>
                 <div class="mb-3 row p-1">
                     <label asp-for="Book.GenreId" class="p-0"></label>
                     <Select asp-for="Book.GenreId" asp-items="@Model.GenreList" class="form-select  border-0 shadow">
@@ -59,6 +61,12 @@
                     <span asp-validation-for="Book.YearPublished" class="text-danger"></span>
 
                 </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Book.CopiesSold" class="p-0"></label>
+                    <input asp-for="Book.CopiesSold" class="form-control" />
+                    <span asp-validation-for="Book.CopiesSold" class="text-danger"></span>
+
+                </div>
                 <div class="form-floating py-2 col-12">
                     <label asp-for="Book.ImgID" class="p-0"></label>
                     <input type="file" name="file" class="form-control border-0 shadow" />
@@ -76,7 +84,7 @@
                         }
                     </div>
                     <div class="col-6 col-md-3">
-                        <a asp-controller="Book" asp-action="Index" class="btn btn-outline-primary border  form-control">
+                        <a asp-controller="Book" asp-action="index" class="btn btn-outline-primary border  form-control">
                             Back to List
                         </a>
                     </div>
