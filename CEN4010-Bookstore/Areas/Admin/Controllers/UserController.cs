@@ -31,42 +31,46 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public List<User> GetUsers()
+        public IActionResult GetUsers()
         {
 
             List<User> users = _db.Users.ToList();
-
-            return users;
+            if(users != null){
+                return Json(new {data=users});
+            } else return Json(new {message="Can't find users"});
 
         }
 
         [HttpGet]
-        public User? GetById(int? id)
+        public IActionResult GetById(int? id)
         {
             if (id == null || id == 0)
             {
-                return null;
+                return Json(new {message = "Id cannot is invalid"});
             }
 
             User foundInDB = _db.Users.Find(id);
 
-            return foundInDB;
+            return Json(foundInDB);
 
         }
 
         [HttpPut]
-        public OkObjectResult Update([FromBody] User user)
+        public User Update([FromBody] User user)
         {
             _db.Users.Update(user);
-            _db.SaveChanges();
-            return Ok("Record has been updated");
+            if (_db.SaveChanges() > 0)
+                return user;
+            return null;
         }
 
         [HttpDelete]
-        public int Delete(int? id)
+        public IActionResult Delete(int? id)
         {
-            var user = _db.Users.Where(user => user.Id.Equals(id)).ExecuteDelete();
-            return user;
+            var deleted = _db.Users.Where(user => user.Id.Equals(id)).ExecuteDelete();
+            if(deleted > 0){
+                return Json(new {message = "Successfully deleted"});
+            } else return Json(new {message = "Can't delete user"});
         }
 
     }
