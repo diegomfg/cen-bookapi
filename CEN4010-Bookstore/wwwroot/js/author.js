@@ -9,8 +9,8 @@ function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": { url: '/admin/author/getall' },
         "columns": [
-            { data: 'firstName', "width": "10%" },
             { data: 'lastName', "width": "10%" },
+            { data: 'firstName', "width": "10%" },
             { data: 'country', "width": "10%" },
             { data: 'publisher.name', "width": "10%" },
             { data: 'biography', "width": "40%" },
