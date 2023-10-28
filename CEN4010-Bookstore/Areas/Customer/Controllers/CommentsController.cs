@@ -40,29 +40,29 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
         
 
     }
-    public IActionResult CreateComment(int bookId, int userId, string comment)
+    public IActionResult CreateReview(int bookId, int userId, string review)
     {
         
-        var newComment = new BookComment
+        var newReview = new BookReview
         {
             BookId = bookId,
             UserId = userId,
-            Text = comment,
+            Text = review,
             Datestamp = DateTime.Now
         };
 
-        _dbContext.BookComments.Add(newComment);
+        _dbContext.BookReview.Add(newReview);
         _dbContext.SaveChanges();
 
-        return Ok("Comment created successfully");
+        return Ok("Review created successfully");
     }
-    public IActionResult GetComments(int bookId)
+    public IActionResult GetReviews(int bookId)
     {
-        var comments = _dbContext.BookComments
+        var reviews = _dbContext.BookReview
             .Where(c => c.BookId == bookId)
             .ToList();
 
-        return Ok(comments);
+        return Ok(here are the reviews);
     }
 
 }
