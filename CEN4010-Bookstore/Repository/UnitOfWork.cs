@@ -15,6 +15,10 @@ namespace CEN4010_Bookstore.Repository
         public IBookRepository Book { get; private set; }
         public IAuthorRepository Author { get; private set; }
         public IPublisherRepository Publisher { get; private set; }
+        public IBookReviewRepository BookReview { get; private set; }
+
+        IBookRepository IUnitOfWork.BookRepository => throw new NotImplementedException();
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -22,6 +26,7 @@ namespace CEN4010_Bookstore.Repository
             Book = new BookRepository(_db);
             Author = new AuthorRepository(_db);
             Publisher = new PublisherRepository(_db);
+            BookReview = new BookReviewRepository(_db);
         }
 
         public void Save()
