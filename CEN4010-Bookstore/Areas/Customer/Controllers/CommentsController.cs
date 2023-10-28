@@ -53,6 +53,7 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
 
         _dbContext.BookReview.Add(newReview);
         _dbContext.SaveChanges();
+        // x
 
         return Ok("Review created successfully");
     }
