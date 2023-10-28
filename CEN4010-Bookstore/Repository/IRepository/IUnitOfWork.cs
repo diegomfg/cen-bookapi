@@ -4,6 +4,10 @@
     {
         IGenreRepository Genre { get; }
         IBookRepository Book { get; }
+        IAuthorRepository Author { get; }
+        IPublisherRepository Publisher { get; }
+        IBookRepository BookRepository { get; }
+        IBookReviewRepository BookReview { get; }
 
         void Save();
     }

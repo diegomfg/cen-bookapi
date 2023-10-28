@@ -3,10 +3,14 @@ using CEN4010_Bookstore.Models;
 using CEN4010_Bookstore.Models.ViewModels;
 using CEN4010_Bookstore.Repository;
 using CEN4010_Bookstore.Repository.IRepository;
+using CEN4010_Bookstore.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Protocol;
 using System.ComponentModel;
+using System.Net;
+using System.Security.Claims;
 
 namespace CEN4010_Bookstore.Areas.Admin.Controllers
 {
@@ -23,9 +27,10 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties:"Genre").ToList();
+            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Genre,Author").ToList();
             return View(objBookList);
         }
+
 
         [HttpGet]
         public List<Book> GetBooks()
@@ -42,7 +47,13 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
                     Text = u.Name,
                     Value = u.Id.ToString(),
                 }),
+                AuthorList = _unitOfWork.Author.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.FirstName + " " + u.LastName,
+                    Value = u.Id.ToString(),
+                }),
                 Book = new Book()
+
             };
 
             if(id==null || id ==0)
@@ -105,36 +116,61 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
             return View();
         }
        
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Genre,Author").ToList();
+            return Json(new { data = objBookList });
+        }
+
+        public IActionResult GetByAuthor(int AuthId)
+        {
+            List<Book> objBookList = _unitOfWork.Book.GetAll().ToList();
+            objBookList = objBookList.Where(x => x.AuthorId == AuthId).ToList();
+            return Json(new { data = objBookList });
+        }
+
+
+        
+        [HttpGet]
+        public IActionResult GetISBN(String Id)
+        {
+            Book book = _unitOfWork.Book.Get(u => u.ISBN.Contains(Id), includeProperties: "Genre,Author");
+            return Json(new { data = book });
+        }
+
+
+
+
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null)
+            var bookToBeDeleted = _unitOfWork.Book.Get(u =>u.Id == id);
+
+            if (bookToBeDeleted == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "error while deleting" });
             }
 
-            Book? BookFromDb = _unitOfWork.Book.Get(u => u.Id == id);
-            if (BookFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(BookFromDb);
-        }
 
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePost(int? id)
-        {
-            Book obj = _unitOfWork.Book.Get(u => u.Id == id);
-            if (obj == null)
+            if(bookToBeDeleted.ImgID != null)
             {
-                return NotFound();
+                var oldImagePath =
+                    Path.Combine(_webHostEnvironment.WebRootPath, bookToBeDeleted.ImgID.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
             }
-            _unitOfWork.Book.Remove(obj);
+
+            _unitOfWork.Book.Remove(bookToBeDeleted);
             _unitOfWork.Save();
-            TempData["success"] = "Book deleted successfully";
-            return RedirectToAction("Index");
 
-
+            return Json(new { success = true, message = "delete successful" });
         }
+        #endregion 
 
     }
 }
