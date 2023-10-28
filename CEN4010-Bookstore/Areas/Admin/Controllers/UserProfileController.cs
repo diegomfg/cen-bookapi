@@ -32,16 +32,52 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public String Create([FromBody] UserProfile userProfile)
+        public IActionResult Create([FromBody] UserProfile userProfile)
         {
             var payload = _db.UserProfiles.Add(userProfile);
             if (_db.SaveChanges() > 0)
-                return "Create user profile";
+                return Json(new {message = "Success CREATING User Profile"});
             else
-                return "error creating user profile";
+                return Json(new {message = $"Error CREATING new profile for user: {userProfile.User}"});
 
         }
 
+        [HttpGet]
+        public IActionResult GetById(int? id){
+            UserProfile? profile = _db.UserProfiles
+                .Include(uP => uP.User)
+                .FirstOrDefault(uP => uP.Id == id);
+
+            if(profile != null){
+                return Json(profile);
+            } else return Json(new {message = "Unable to FIND User Profile"});
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] UserProfile profileToEdit){
+
+                _db.UserProfiles.Update(profileToEdit);
+
+                if(_db.SaveChanges() > 0){
+
+                   return Json(new {message = "Successfully EDITED profile"});
+
+                } else return Json(new {message = "Unable to find profile"});
+
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int? id){
+
+                _db.UserProfiles.Where(uP=>uP.Id.Equals(id)).ExecuteDelete();
+
+                if(_db.SaveChanges() > 0){
+
+                   return Json(new {message = "Successfully DELETED profile"});
+
+                } else return Json(new {message = "Unable to DELETE profile"});
+
+        }
     }
 }
 
