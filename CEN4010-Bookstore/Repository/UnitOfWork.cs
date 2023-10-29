@@ -16,6 +16,7 @@ namespace CEN4010_Bookstore.Repository
         public IAuthorRepository Author { get; private set; }
         public IPublisherRepository Publisher { get; private set; }
         public IBookReviewRepository BookReview { get; private set; }
+        public IBookRatingRepository BookRating { get; private set; }
 
         IBookRepository IUnitOfWork.BookRepository => throw new NotImplementedException();
 
