@@ -8,6 +8,7 @@
         IPublisherRepository Publisher { get; }
         IBookRepository BookRepository { get; }
         IBookReviewRepository BookReview { get; }
+        IBookRatingRepository BookRating { get; }
 
         void Save();
     }

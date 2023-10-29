@@ -34,13 +34,16 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
 
 
 
-        public IActionResult GetReviews(int id)
+        public IActionResult GetBookReviews(int id)
         {
-            /* var reviews = _dbContext.BookReview
+            /*
+             var reviews = _unitOfWork.BookReview
                 .Where(c => c.BookId == bookId)
                 .ToList();
             */
-            List<BookReview> objReviewList = _unitOfWork.BookReview.GetAll().ToList();
+
+
+            List<BookReview> objReviewList = _unitOfWork.BookReview.GetAll(includeProperties: "Book").ToList();
             objReviewList = objReviewList.Where(x => x.BookId == id).ToList();
             return Json(new { data = objReviewList });
         }
