@@ -29,7 +29,7 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
             _unitOfWork.BookReview.Add(obj);
             _unitOfWork.Save();
 
-            return Ok("Rating created successfully");
+            return Ok("Review created successfully");
         }
 
 
@@ -44,6 +44,7 @@ namespace CEN4010_Bookstore.Areas.Customer.Controllers
             objReviewList = objReviewList.Where(x => x.BookId == id).ToList();
             return Json(new { data = objReviewList });
         }
+
 
     }
 }
