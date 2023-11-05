@@ -27,7 +27,11 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         {
             List<UserProfile> UserProfiles = _db.UserProfiles.Include(u => u.User).ToList();
             // List<UserProfile> UserProfiles = _db.UserProfiles.ToList();
-            return Json(new {data = UserProfiles});
+            if (UserProfiles == null)
+            {
+                return Json(new { message = "Unable to find data" });
+            }
+            else return Json(new { data = UserProfiles });
 
         }
 
@@ -36,46 +40,49 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         {
             var payload = _db.UserProfiles.Add(userProfile);
             if (_db.SaveChanges() > 0)
-                return Json(new {message = "Success CREATING User Profile"});
+                return Json(new { message = "Success CREATING User Profile" });
             else
-                return Json(new {message = $"Error CREATING new profile for user: {userProfile.User}"});
+                return Json(new { message = $"Error CREATING new profile for user: {userProfile.User}" });
 
         }
 
         [HttpGet]
-        public IActionResult GetById(int? id){
+        public IActionResult GetById(int? id)
+        {
             UserProfile? profile = _db.UserProfiles
                 .Include(uP => uP.User)
                 .FirstOrDefault(uP => uP.Id == id);
 
-            if(profile != null){
+            if (profile != null)
+            {
                 return Json(profile);
-            } else return Json(new {message = "Unable to FIND User Profile"});
+            }
+            else return Json(new { message = "Unable to FIND User Profile" });
         }
 
         [HttpPut]
-        public IActionResult Update([FromBody] UserProfile profileToEdit){
+        public IActionResult Update([FromBody] UserProfile profileToEdit)
+        {
 
-                _db.UserProfiles.Update(profileToEdit);
+            _db.UserProfiles.Update(profileToEdit);
 
-                if(_db.SaveChanges() > 0){
+            if (_db.SaveChanges() > 0)
+            {
 
-                   return Json(new {message = "Successfully EDITED profile"});
+                return Json(new { message = "Successfully EDITED profile" });
 
-                } else return Json(new {message = "Unable to find profile"});
+            }
+            else return Json(new { message = "Unable to find profile" });
 
         }
 
         [HttpDelete]
-        public IActionResult Delete(int? id){
+        public IActionResult Delete(int? id)
+        {
 
-                _db.UserProfiles.Where(uP=>uP.Id.Equals(id)).ExecuteDelete();
-
-                if(_db.SaveChanges() > 0){
-
-                   return Json(new {message = "Successfully DELETED profile"});
-
-                } else return Json(new {message = "Unable to DELETE profile"});
+            _db.UserProfiles.Where(uP => uP.Id.Equals(id)).ExecuteDelete();
+            _db.SaveChanges();
+            return Json(new { message = "Profile Deleted" });
 
         }
     }
