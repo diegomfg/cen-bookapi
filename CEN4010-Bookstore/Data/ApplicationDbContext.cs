@@ -19,7 +19,7 @@ namespace CEN4010_Bookstore.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BookRating> BookRatings { get; set; }
-        public DbSet<BookReview> Reviews { get; set; }
+        public DbSet<BookReview> BookReviews { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
