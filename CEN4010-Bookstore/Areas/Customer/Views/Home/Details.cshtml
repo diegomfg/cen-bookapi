@@ -1,0 +1,92 @@
+﻿@model Book
+
+<form method="post">
+    <div class="card shadow border-0 mt-4">
+        <div class="card-header bg-secondary bg-gradient text-light py-4">
+            <div class="row">
+                <div class="col-12 text-center ">
+                    <h3 class="text-black text-uppercase">@Model.Title</h3>
+                    <p class="text-black-50 fw-semibold mb-0">by @Model.Author.FirstName @Model.Author.LastName</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="py-3">
+                <div class="row">
+                    <div class="col-6 col-md-2 offset-lg-1 pb-1">
+                        <a asp-action="Index" class="btn btn-outline-primary bg-gradient mb-5 fw-semibold btn-sm text-uppercase">
+                            <small>Back to home</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
+                        <img src="@Model.ImgID" width="100%" class="rounded" />
+                    </div>
+                    <div class="col-12 col-lg-6 offset-lg-1">
+
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50 ">Category: @Model.Genre.Name</h6>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50 ">Publisher: @Model.Author.PublisherId</h6>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50 ">ISBN: @Model.ISBN</h6>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50  pb-2">
+                                List Price:
+                                <span class="text-decoration">
+                                    @Model.MSRP.ToString("c")
+                                </span>
+                            </h6>
+                        </div>
+                        <div class="row ps-2">
+                            <h6 class="text-dark text-opacity-50 ">Copies Sold : @Model.CopiesSold</h6>
+                        </div>
+                        <div class="row ps-2">
+                           <h6 class="text-dark text-opacity-50 ">Rating:
+                                <a asp-controller="BookRating" asp-action="CreateRating" asp-route-bookid="@Model.Id" asp-route-rating="1" asp-route-userid="1" class="btn btn-primary">1 </a>
+                                <a asp-controller="BookRating" asp-action="CreateRating" asp-route-bookid="@Model.Id" asp-route-rating="2" asp-route-userid="1" class="btn btn-primary">2 </a>
+                                <a asp-controller="BookRating" asp-action="CreateRating" asp-route-bookid="@Model.Id" asp-route-rating="3" asp-route-userid="1" class="btn btn-primary">3 </a>
+                                <a asp-controller="BookRating" asp-action="CreateRating" asp-route-bookid="@Model.Id" asp-route-rating="4" asp-route-userid="1" class="btn btn-primary">4 </a>
+                                <a asp-controller="BookRating" asp-action="CreateRating" asp-route-bookid="@Model.Id" asp-route-rating="5" asp-route-userid="1" class="btn btn-primary">5 </a>
+                            </h6>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="row pl-2 my-3">
+                        <p class="text-secondary lh-sm">@Html.Raw(Model.Description)</p>
+                    </div>
+                    <div class="row pl-2 mb-3">
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-primary text-white border-0 fw-semibold"
+                                      id="inputGroup-sizing-default">
+                                    Count
+                                </span>
+                                <input type="number" value="1" class="form-control text-end"
+                                       aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 pb-1">
+                            <button type="submit" disabled
+                                    class="btn btn-primary bg-gradient  w-100 py-2 text-uppercase fw-semibold">
+                                Add to Cart (Comming Soon...)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</form>

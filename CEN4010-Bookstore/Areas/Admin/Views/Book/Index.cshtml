@@ -15,51 +15,23 @@
         </div>
 
 
-<table class="table table-bordered table-striped">
-    <thread>
-        <tr>
-            <th>Title</th>
-            <th>Description </th>
-            <th>AuthorId </th>
-            <th>GenreID </th>
-            <th>ISBN </th>
-            <th>MSRP </th>
-            <th>Year Published </th>
-            <th>IMG </th>
-
-        </tr>
-    </thread>
-    <tbody>
-        @foreach(var obj in Model)
-        {
+    <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+        <thead>
             <tr>
-                <td>@obj.Title</td>
-                <td>@obj.Description</td>
-                <td>@obj.AuthorId</td>
-                <td>@obj.Genre.Name</td>
-                <td>@obj.ISBN</td>
-                <td>@obj.MSRP</td>
-                <td>@obj.YearPublished</td>
-                <td>@obj.ImgID</td>
-                <td>
-                    <div class="w-75" btn-group role="group">
-                            <a asp-controller="Book" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-                                <i class="bi bi-pencil-square"></i> Edit
-                        </a>
-                            <a asp-controller="Book" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
-                                <i class="bi bi-trash-fill"></i> Delete
-                            </a>
-                    </div>
-                </td>
+                <th>Title</th>
+                <th>Description </th>
+                <th>First Name </th>
+                <th>Last Name </th>
+                <th>Genre</th>
+                <th>ISBN </th>
+                <th>MSRP </th>
+                <th>Year Published </th>
+                <th>Copies Sold </th>
+                <th></th>
             </tr>
-
-
-        }
-
-    </tbody>
-    
-
-
-</table>
-
+        </thead>
+    </table>
 </div>
+@section Scripts{
+    <script src="~/js/book.js"></script>
+}
