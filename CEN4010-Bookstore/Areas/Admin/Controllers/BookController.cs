@@ -127,13 +127,18 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
 
         public IActionResult GetByAuthor(int AuthId)
         {
-            List<Book> objBookList = _unitOfWork.Book.GetAll().ToList();
+            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Genre,Author").ToList();
             objBookList = objBookList.Where(x => x.AuthorId == AuthId).ToList();
+            return Json(new { data = objBookList });
+        }
+        public IActionResult GetByGenre(int GenreId)
+        {
+            List<Book> objBookList = _unitOfWork.Book.GetAll(includeProperties: "Genre,Author").ToList();
+            objBookList = objBookList.Where(x => x.GenreId == GenreId).ToList();
             return Json(new { data = objBookList });
         }
 
 
-        
         [HttpGet]
         public IActionResult GetISBN(String Id)
         {
