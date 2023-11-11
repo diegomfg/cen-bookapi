@@ -3,8 +3,8 @@
     public class Sale
     {
         public int Id { get; set; }
-        public User UserId { get; set; }
-        public Payment PaymentId { get; set; }
+        public int UserId { get; set; }
+        public int PaymentId { get; set; }
         public float Total {  get; set; }
 
     }
