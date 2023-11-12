@@ -44,7 +44,7 @@ namespace CEN4010_Bookstore.Repository
             return query.FirstOrDefault();
         }
 
-
+        
         public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -62,7 +62,7 @@ namespace CEN4010_Bookstore.Repository
             }
             return query.ToList();
         }
-
+        
         /*
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
