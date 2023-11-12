@@ -26,7 +26,7 @@ namespace CEN4010_Bookstore.Data
         public DbSet<Sale> Sales { get; set; }
         public DbSet<SalesDetail> SalesDetails { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-        public DbSet<ShoppingCartDetail> ShoppingCartDetails { get; set; }
+       // public DbSet<ShoppingCartDetail> ShoppingCartDetails { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
