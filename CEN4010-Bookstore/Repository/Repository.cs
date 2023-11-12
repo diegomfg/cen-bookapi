@@ -29,7 +29,7 @@ namespace CEN4010_Bookstore.Repository
         {
             dbSet.Add(entity);
         }
-
+        
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -43,7 +43,11 @@ namespace CEN4010_Bookstore.Repository
             }
             return query.FirstOrDefault();
         }
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> main
         
         public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
@@ -63,7 +67,11 @@ namespace CEN4010_Bookstore.Repository
             return query.ToList();
         }
         
+<<<<<<< HEAD
+        
+=======
         /*
+>>>>>>> main
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -78,7 +86,7 @@ namespace CEN4010_Bookstore.Repository
 
             return query.ToList();
         }
-        */
+        
 
         public void Remove(T entity)
         {

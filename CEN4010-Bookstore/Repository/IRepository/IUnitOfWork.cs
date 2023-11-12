@@ -9,6 +9,7 @@
         IBookRepository BookRepository { get; }
         IBookReviewRepository BookReview { get; }
         IBookRatingRepository BookRating { get; }
+        IShoppingCartRepository ShoppingCart { get; }
 
         void Save();
     }
