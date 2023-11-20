@@ -11,6 +11,6 @@ namespace CEN4010_Bookstore.Models
         public int UserId { get; set; }
         public User User { get; set; } = null!;
         public String? ProfilePicture { get; set; }
-
+        public String? Biography { get; set; }
     }
 }
