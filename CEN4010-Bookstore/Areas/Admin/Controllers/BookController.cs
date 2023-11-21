@@ -147,6 +147,15 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
         }
 
 
+        [HttpPost]
+        public Book Create(Book book)
+        {
+            _unitOfWork.Book.Add(book);
+            _unitOfWork.Save();
+            return book;
+        }
+
+
 
 
         [HttpDelete]

@@ -12,10 +12,13 @@ namespace CEN4010_Bookstore.Models
         [ForeignKey("AuthorId")]
         [ValidateNever]
         public Author? Author { get; set; }
+
         public int GenreId { get; set; }
         [ForeignKey("GenreId")]
         [ValidateNever]
         public Genre? Genre { get; set; }
+
+
         public string? ISBN {  get; set; }
         public int MSRP {  get; set; }
         public string? Description {  get; set; }

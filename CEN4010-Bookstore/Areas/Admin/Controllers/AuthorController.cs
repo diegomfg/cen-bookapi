@@ -104,6 +104,15 @@ namespace CEN4010_Bookstore.Areas.Admin.Controllers
 
             return Json(new { success = true, message = "delete successful" });
         }
+
+
+        [HttpPost]
+        public Author Create(Author author)
+        {
+            _unitOfWork.Author.Add(author);
+            _unitOfWork.Save();
+            return author;
+        }
         #endregion 
 
     }
