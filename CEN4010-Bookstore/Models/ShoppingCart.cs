@@ -6,11 +6,13 @@ namespace CEN4010_Bookstore.Models
     public class ShoppingCart
     {
         public int Id { get; set; }
+
         public int? UserId { get; set; }
        
         [ForeignKey("UserId")]
         [ValidateNever]
         public User? User { get; set; }
+
         public int? BookId { get; set; }
         
         [ForeignKey("BookId")]

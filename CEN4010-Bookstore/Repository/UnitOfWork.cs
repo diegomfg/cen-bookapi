@@ -18,6 +18,7 @@ namespace CEN4010_Bookstore.Repository
         public IBookReviewRepository BookReview { get; private set; }
         public IBookRatingRepository BookRating { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IUserRepository User { get; private set; }
 
         IBookRepository IUnitOfWork.BookRepository => throw new NotImplementedException();
 
@@ -30,6 +31,7 @@ namespace CEN4010_Bookstore.Repository
             Publisher = new PublisherRepository(_db);
             BookReview = new BookReviewRepository(_db);
             ShoppingCart = new ShoppingCartRepository(_db);
+            User = new UserRepository(_db);
         }
 
         public void Save()
